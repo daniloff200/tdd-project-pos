@@ -1,6 +1,7 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { FavoriteSongsComponent } from './favorite-songs.component';
+import { By } from '@angular/platform-browser';
 
 describe('FavoriteSongsComponent', () => {
   let component: FavoriteSongsComponent;
@@ -19,7 +20,9 @@ describe('FavoriteSongsComponent', () => {
     fixture.detectChanges();
   });
 
-  it('should create', () => {
-    expect(component).toBeTruthy();
+    it('should have a title', () => {
+      const titleElements = fixture.debugElement.queryAll(By.css('h1'));
+      expect(titleElements.length).toBe(1);
+      expect(titleElements[0].nativeElement.innerHTML).toBe('My favorite songs');
   });
 });
