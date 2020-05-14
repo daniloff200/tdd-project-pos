@@ -3,6 +3,7 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { FavoriteSongsComponent } from './favorite-songs.component';
 import { By } from '@angular/platform-browser';
 import { of } from 'rxjs';
+import { FavoriteSongsService } from './favorite-songs.service';
 
 const favoriteSongsMock: any[] = [
   { title: 'What goes around comes around', singer: 'Justin Timberlake' },
@@ -17,7 +18,8 @@ describe('FavoriteSongsComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ FavoriteSongsComponent ]
+      declarations: [ FavoriteSongsComponent ],
+      providers: [FavoriteSongsService]
     })
     .compileComponents();
   }));

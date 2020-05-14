@@ -3,6 +3,7 @@ import { NgModule } from '@angular/core';
 
 import { AppComponent } from './app.component';
 import { FavoriteSongsComponent } from './favorite-songs/favorite-songs.component';
+import { FavoriteSongsService } from './favorite-songs/favorite-songs.service';
 
 @NgModule({
   declarations: [
@@ -12,7 +13,7 @@ import { FavoriteSongsComponent } from './favorite-songs/favorite-songs.componen
   imports: [
     BrowserModule
   ],
-  providers: [],
+  providers: [FavoriteSongsService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

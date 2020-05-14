@@ -1,4 +1,6 @@
 <h1>My favorite songs</h1>
-<div class="song" *ngFor="let song of favoriteSongs">
-  {{ song.singer }} - {{ song.title }}
-</div>
+<ng-container *ngIf="(favoriteSongs$ | async); let favoriteSongs">
+  <div class="song" *ngFor="let song of favoriteSongs">
+    {{ song.singer }} - {{ song.title }}
+  </div>
+</ng-container>
