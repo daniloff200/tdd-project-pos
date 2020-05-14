@@ -2,6 +2,7 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { FavoriteSongsComponent } from './favorite-songs.component';
 import { By } from '@angular/platform-browser';
+import { of } from 'rxjs';
 
 const favoriteSongsMock: any[] = [
   { title: 'What goes around comes around', singer: 'Justin Timberlake' },
@@ -12,6 +13,7 @@ const favoriteSongsMock: any[] = [
 describe('FavoriteSongsComponent', () => {
   let component: FavoriteSongsComponent;
   let fixture: ComponentFixture<FavoriteSongsComponent>;
+  let favoriteSongService: FavoriteSongsService;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
@@ -22,6 +24,8 @@ describe('FavoriteSongsComponent', () => {
 
   beforeEach(() => {
     fixture = TestBed.createComponent(FavoriteSongsComponent);
+    favoriteSongService = TestBed.inject(FavoriteSongsService);
+    spyOn(favoriteSongService, 'getFavoriteSongs').and.returnValue((of(favoriteSongsMock)));
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
@@ -36,5 +40,10 @@ describe('FavoriteSongsComponent', () => {
   it('show all the favorite songs', () => {
     const songElements = fixture.debugElement.queryAll(By.css('.song'));
     expect(songElements.length).toBe(favoriteSongsMock.length);
+  });
+
+  it('should get the songs from the service', () => {
+      fixture.detectChanges();
+      expect(favoriteSongService.getFavoriteSongs).toHaveBeenCalled();
   });
 });
